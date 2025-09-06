@@ -5,7 +5,7 @@ import joblib
 def compare_excel_columns(file1, file2):
     # Read the Excel files
     df1 = pd.read_excel(file1)
-    df2 = pd.read_excel(file2)
+    df2 = pd.read_csv(file2, usecols=lambda x: x not in ['Unnamed: 0', 'Unnamed: 1'])
     
     # Extract column names
     columns1 = set(df1.columns)
@@ -30,8 +30,8 @@ def compare_excel_columns(file1, file2):
     common_columns = [col for col in df2.columns if col in df1.columns]
     common_columns_sorted = sorted(common_columns)  # Sort columns alphabetically
     df1_reordered = df1[common_columns_sorted]
-    
-    return df1_reordered
+    cols_to_drop = ["OD", "growth_rate", "product_titer", "production_rate", "paper"]
+    return df1_reordered.drop(columns=cols_to_drop)
 
 def preprocess_data(df):
     encoder = OrdinalEncoder()
@@ -51,18 +51,18 @@ def load_model_and_predict(df, model_path):
     return predictions
 
 # Example usage
-file1 = '../data/TL_TEA_v2.xlsx'
-file2 = '../data/2973_v2.xlsx'
+file1 = '../data/lycopene1000_nonredundant.xlsx'
+file2 = '../data/2973.csv'
 df1_reordered = compare_excel_columns(file1, file2)
 df_tea = preprocess_data(df1_reordered)
 print(df_tea.head())
 
 for target in ['growth_rate', 'product_titer', 'production_rate', 'OD']:
-    model_path = f'../models/{target}_model.pkl'
+    model_path = f'../models/{target}_model_7942to2973_splitbypercent_r2.plk'
     predictions = load_model_and_predict(df_tea, model_path)
     
     # Save predictions to CSV
     predictions_df = pd.DataFrame(predictions, columns=[f'{target}_pred'])
-    predictions_df.to_csv(f'../data/predictions/{target}_pred.csv', index=False)
+    predictions_df.to_csv(f'../data/predictions/{target}_pred_tea_perc.csv', index=False)
     
-    print(f'Saved predictions for {target} to ../data/predictions/{target}_pred.csv')
+    print(f'Saved predictions for {target} to ../data/predictions/{target}_pred_tea_perc.csv')
