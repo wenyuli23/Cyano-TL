@@ -1,6 +1,6 @@
 # Cyano-TL
 
-Code repository for paper "Leveraging Transfer Learning in Photo-Bioproduction for Enhanced CO2 Capture and Upcycle via Synthetic Biology"
+Code repository for paper "Multimodal AI for Photobiorefinery (MAP): Knowledge Integration, Predictive Modeling, and Techno-Economic Analysis"
 
 ## Overview
 
@@ -102,4 +102,5 @@ If you use this code in your research, please cite:
 
 ```
 [Paper citation to be added upon publication]
+
 ```
