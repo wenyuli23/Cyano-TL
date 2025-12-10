@@ -1,6 +1,6 @@
 # Cyano-TL
 
-Code repository for paper [*Development of multimodal AI for photobiorefineries via knowledge syntheses, transfer learning, and techno-economic analysis*] (https://www.sciencedirect.com/science/article/pii/S096085242501613X)
+Code repository for paper [*Development of multimodal AI for photobiorefineries via knowledge syntheses, transfer learning, and techno-economic analysis*](https://www.sciencedirect.com/science/article/pii/S096085242501613X)
 
 ## Overview
 
@@ -104,4 +104,5 @@ If you use this code in your research, please cite:
 [Paper citation to be added upon publication]
 
 ```
+
 
